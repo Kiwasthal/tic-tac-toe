@@ -10,7 +10,6 @@ const gameModule = (() => {
         let playerTwo = createPlayer("O", false);
 
         let flowControl = {
-            playerPlaying : playerOne.PlayerPlaying,
             playerOneScore : 0,
             playerTwoScore : 0,
             gameCount : 0
@@ -52,15 +51,24 @@ const gameModule = (() => {
         }
 
         let updateScore = (target,display) => {
-            target++;
+            ++target;
             selector(display).textContent = target;
         }
 
-        let restart = () => {
+        let clearButtons = () => {
             gameButtons.forEach(button => {
                 button.textContent = "";
-        })
-    }
+            })
+        }
+
+        let clearBoard = (array) => {
+            for (let i = 0 ; i < array.length ; i++) {
+                array[i] = ""
+            }
+        }
+
+
+
         selector('.bg-modal').style.display = 'flex';
         selector('.gameOne').addEventListener('click', () =>{
             playerOne.name = selector('#player-one-name').value;
@@ -69,7 +77,10 @@ const gameModule = (() => {
             selector('.player-two-display').textContent = playerTwo.name;
             selector('.bg-modal').style.display = 'none'; 
         })
-        selector('.restart').addEventListener('click' , restart )
+        selector('.restart').addEventListener('click' , () =>{
+            clearButtons()
+            clearBoard(gameBoard.boardInputs)
+        } )
         
         gameButtons.forEach(button => button.addEventListener('click', () => {
             if (button.textContent != "X" && button.textContent != "O" ) {
@@ -85,9 +96,17 @@ const gameModule = (() => {
                 if (checkForWinner(gameBoard.boardInputs,playerOne.PlayerMark)) {
                     updateScore(flowControl.playerOneScore,".PlayerOne-score");
                     selector('.game-state').textContent = 'Player One Has Won'
+                    clearButtons()
+                    clearBoard(gameBoard.boardInputs)
+                    flowControl.playerOneScore++;
+                    updatePlayer();
+                    
                 } else if (checkForWinner(gameBoard.boardInputs,playerTwo.PlayerMark)) {
                     updateScore(flowControl.playerTwoScore,".PlayerTwo-score");
                     selector('.game-state').textContent = `Player Two Has Won`;
+                    clearButtons()
+                    clearBoard(gameBoard.boardInputs)
+                    flowControl.playerTwoScore++
             }
         }}));  
 })();
