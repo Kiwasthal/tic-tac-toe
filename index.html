@@ -6,17 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic-Tac-Toe</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">   
     <script src="script.js" defer></script>
 </head>
 <body>
 
     <div class="middle-modal">
         <div class="upper-space">
-            <h1>Tic tac toe</h1>
+            <h1>Tic-Tac-Toe</h1>
             <h2 class="game-state">Currently Playing</h2>
         </div>
         <div class="playerOne-modal">
-            <h2>Player one</h2>
+            <h2 class="player-one-display" >Player one</h2>
             <h3>Score</h3>
             <h3 class="PlayerOne-score">0</h3>
         </div>
@@ -32,15 +35,31 @@
             <button class="bottom-right gameBtn"></button>
         </div>
         <div class="playerTwo-modal">
-            <h2>Player Two</h2>
+            <h2 class="player-two-display">Player Two</h2>
             <h3>Score</h3>
             <h3 class="PlayerTwo-score">0</h3>
         </div>
-        <div class="bottom-modal"><button class="play">PLAY</button></div>
+        <div class="bottom-modal"><button class="restart">RESTART</button></div>
 
     </div>
-    <button class="nine">3</button>
+
+<!-- Modal -->
+
+    <div class="bg-modal">
+        <div class="modal-content">
+            <button class="gameOne">TWO PLAYER GAME</button>
+            <input id="player-one-name" type="text" placeholder="Player 1">
+            <input id="player-two-name" type="text" placeholder="Player 2">
+            <button>Against Computer</button>
+        </div>
+    </div>
     
+  <div class="page"></div>
+  <div class="page"></div>
+  <div class="page"></div>
+  <div class="page"></div>
+  <div class="page"></div>
     
 </body>
 </html>
+
