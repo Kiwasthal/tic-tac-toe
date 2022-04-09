@@ -78,11 +78,17 @@ const gameModule = (() => {
             selector('.bg-modal').style.display = 'none'; 
         })
         selector('.restart').addEventListener('click' , () =>{
-            clearButtons()
-            clearBoard(gameBoard.boardInputs)
+            clearButtons();
+            clearBoard(gameBoard.boardInputs);
+            flowControl.gameCount = 0;
+            flowControl.playerOneScore = 0;
+            flowControl.playerTwoScore = 0;
+            selector(".PlayerOne-score").textContent = `${flowControl.playerOneScore}`;
+            selector(".PlayerTwo-score").textContent = `${flowControl.playerTwoScore}`;
         } )
         
         gameButtons.forEach(button => button.addEventListener('click', () => {
+            flowControl.gameCount++
             if (button.textContent != "X" && button.textContent != "O" ) {
 
                 if (playerOne.PlayerPlaying){
@@ -100,6 +106,7 @@ const gameModule = (() => {
                     clearBoard(gameBoard.boardInputs)
                     flowControl.playerOneScore++;
                     updatePlayer();
+                    flowControl.gameCount = 0
                     
                 } else if (checkForWinner(gameBoard.boardInputs,playerTwo.PlayerMark)) {
                     updateScore(flowControl.playerTwoScore,".PlayerTwo-score");
@@ -107,13 +114,29 @@ const gameModule = (() => {
                     clearButtons()
                     clearBoard(gameBoard.boardInputs)
                     flowControl.playerTwoScore++
-            }
+                    flowControl.gameCount = 0
+
+                } else if (flowControl.gameCount === 9) {
+                    
+                    selector('.game-state').textContent = `It's a Draw`; 
+                    clearButtons();
+                    clearBoard(gameBoard.boardInputs);
+                    flowControl.gameCount = 0
+
+                
+            
+         }
+            
         }}));  
 })();
 
 
 
-
+let btns = document.querySelectorAll('.random')
+btns.forEach(button => button.addEventListener('click', () =>{
+    const store  = button.textContent
+    console.log(store);
+}))
 
 
  
