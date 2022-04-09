@@ -17,11 +17,13 @@ body {
     grid-area: 1 / 1 / 2 / 4;
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: rgb(214, 179, 24);
     padding: 2vh;
     border-top: 2px solid black;
     border-left: 2px solid black;
     border-right: 2px solid black;
+    flex-direction: column;
 }
 
 

@@ -42,7 +42,7 @@ const gameModule = (() => {
         let gameButtons = document.querySelectorAll('.gameBtn');
 
 
-        for (let i = 0 ; i < gameButtons.length - 1 ; i++){
+        for (let i = 0 ; i < gameButtons.length  ; i++){
                  gameButtons[i].dataset.index = i
              }
 
@@ -62,23 +62,27 @@ const gameModule = (() => {
 
            
         gameButtons.forEach(button => button.addEventListener('click', () => {
-            if (playerOne.PlayerPlaying){
-                playerInput(button, playerOne.PlayerMark);
-                updatePlayer();
+            if (button.textContent != "X" && button.textContent != "O" ) {
+                console.log(gameBoard.boardInputs)
+                if (playerOne.PlayerPlaying){
+                    playerInput(button, playerOne.PlayerMark);
+                    updatePlayer();
                 
-            } else if (!playerOne.PlayerPlaying) {
-                playerInput(button, playerTwo.PlayerMark);
-                updatePlayer();
+                } else if (!playerOne.PlayerPlaying) {
+                    playerInput(button, playerTwo.PlayerMark);
+                    updatePlayer();
                
             }
-            if (checkForWinner(gameBoard.boardInputs,playerOne.PlayerMark)) {
-                alert("You won");
-                updateScore(flowControl.playerOneScore,".PlayerOne-score");
-            } else if (checkForWinner(gameBoard.boardInputs,playerTwo.PlayerMark)) {
-                alert("You lost");
-                updateScore(flowControl.playerTwoScore,".PlayerTwo-score");
+                if (checkForWinner(gameBoard.boardInputs,playerOne.PlayerMark)) {
+                    alert("You won");
+                    updateScore(flowControl.playerOneScore,".PlayerOne-score");
+                    selector('.game-state').textContent = `Player One Has Won`
+                } else if (checkForWinner(gameBoard.boardInputs,playerTwo.PlayerMark)) {
+                    alert("You lost");
+                    updateScore(flowControl.playerTwoScore,".PlayerTwo-score");
+                    selector('.game-state').textContent = `Player Two Has Won`
             }
-        }));  
+        }}));  
 })();
 
 
