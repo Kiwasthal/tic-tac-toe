@@ -15,10 +15,11 @@
 
     <div class="middle-modal">
         <div class="upper-space">
-            <h1>Tic-Tac-Toe</h1>
+            <h1 class="title">Tic-Tac-Toe</h1>
             <h2 class="game-state">Currently Playing</h2>
         </div>
         <div class="playerOne-modal">
+            <h2>"X"</h2>
             <h2 class="player-one-display" >Player one</h2>
             <h3>Score</h3>
             <h3 class="PlayerOne-score">0</h3>
@@ -35,6 +36,7 @@
             <button class="bottom-right gameBtn"></button>
         </div>
         <div class="playerTwo-modal">
+            <h2>"O"</h2>
             <h2 class="player-two-display">Player Two</h2>
             <h3>Score</h3>
             <h3 class="PlayerTwo-score">0</h3>
@@ -47,12 +49,18 @@
 
     <div class="bg-modal">
         <div class="modal-content">
-            <button class="gameOne">TWO PLAYER GAME</button>
+                <div class="gameOne">
+                  <span>Two Player Game</span>
+                </div>
             <input id="player-one-name" type="text" placeholder="Player 1">
             <input id="player-two-name" type="text" placeholder="Player 2">
-            <button>Against Computer</button>
+                <div class="gameTwo">
+                     <span>Against Computer</span>
+                </div>
         </div>
     </div>
+
+
  
 </body>
 </html>
