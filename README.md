@@ -1,3 +1,3 @@
 # tic-tac-toe
 
-Emulating the tic-tac-toe game . Showcasing knowledge of JavaScript Object manipulation (modules,factory functions,IIFE's) as well as advanced CSS and HTML.The target of the project is creating a functional logic without populating the global scope.This project is making use of the <a href="https://en.wikipedia.org/wiki/Minimax">minimax</a> rule to generate optimal outcomes. Here is the demo.
+Emulating the tic-tac-toe game . Showcasing knowledge of JavaScript Object manipulation (modules,factory functions,IIFE's) as well as advanced CSS and HTML.The target of the project is creating a functional logic without populating the global scope.This project is making use of the <a href="https://en.wikipedia.org/wiki/Minimax">minimax</a> rule to generate optimal outcomes. Here is the <a href="https://kiwasthal.github.io/tic-tac-toe/">demo.</a>
