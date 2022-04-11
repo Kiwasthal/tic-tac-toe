@@ -112,8 +112,8 @@ const gameModule = (() => {
                     let best = -1000; 
                     for(let i = 0; i < 3; i++){
                         for(let j = 0; j < 3; j++){
-                            if (board[i][j]==''){
-                                board[i][j] = playerOne.PlayerMark;
+                            if ( board[i][j] == '' ){
+                                board[i][j] = aiMark;
                                 best = Math.max(best, minimax(board, depth + 1, !isMax));
                                 board[i][j] = '';
                             }
@@ -176,21 +176,26 @@ const gameModule = (() => {
         }
 
         let clearButtons = () => {
+            setTimeout( function() {  
             gameButtons.forEach(button => {
                 button.textContent = "";
-            })
+            })} ,50 )
         }
 
-        let clearBoard = (array) => {
-            for (let i = 0 ; i < 3 ; i++) {
+        let clearBoard = (array) => { 
+            
+              for (let i = 0 ; i < 3 ; i++) {
                 for (let j = 0 ; j < 3 ; j++) {
                     array[i][j] = "";
-                }  
+                   
+
+                }
             }
         }
 
 
         selector('.bg-modal').style.display = 'flex';
+        selector('.restart').style.display = 'none'
 
         selector('.restart').addEventListener('click' , () => {
             clearButtons();
@@ -204,6 +209,7 @@ const gameModule = (() => {
         } )
 
         selector('.gameOne').addEventListener('click', () =>{
+            selector('.restart').style.display = ''
             playerOne.name = selector('#player-one-name').value;
             selector('.player-one-display').textContent = playerOne.name;
             playerTwo.name = selector('#player-two-name').value;
@@ -250,6 +256,7 @@ const gameModule = (() => {
             }}));  
         });    
         selector('.gameTwo').addEventListener('click', () => {
+            selector('.restart').style.display = ''
             selector('.bg-modal').style.display = 'none';
             selector('.player-one-display').textContent = "Player";
             selector('.player-two-display').textContent = "Computer";

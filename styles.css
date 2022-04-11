@@ -176,21 +176,8 @@ h3, h2 {
     border-bottom-right-radius: 50px;
 }
 
-.restart {
-    height: 5vh;
-    font-size: 1EM;
-    font-weight: bolder;
-    background-color: white;
-    color: var(--main-color);
-    text-shadow: 0px 2px 2px black;
-    width: 10vw;
-    border-radius: 10px;
-    transition: 500ms;
-}
 
-.restart:hover {
-    transform: scale(1.1);
-}
+
 
 .bg-modal {
     width: 100%;
@@ -216,7 +203,7 @@ h3, h2 {
    background: linear-gradient(171deg, rgba(78,78,88,1) 13%, rgba(161,152,137,1) 49%, rgba(78,78,88,1) 88%, rgba(161,152,137,1) 97%);
 }
 
-.gameOne , .gameTwo{
+.gameOne , .gameTwo, .restart{
     padding: 0.5vw;
     border-radius: 20px;
     text-shadow: 0px 2px 2px black;
@@ -226,7 +213,8 @@ h3, h2 {
 }
 
 .gameOne::before,
-.gameTwo::before {
+.gameTwo::before,
+.restart::before {
     content: '';
     position: absolute;
     top: 0;
@@ -239,13 +227,15 @@ h3, h2 {
   }
 
   .gameOne:hover::before,
-  .gameTwo:hover::before {
+  .gameTwo:hover::before,
+  .restart:hover::before {
     opacity: 0 ;
     transform: scale(0.5,0.5);
   }
 
   .gameOne::after,
-  .gameTwo::after {
+  .gameTwo::after,
+  .restart::after {
     content: '';
     position: absolute;
     top: 0;
@@ -259,12 +249,13 @@ h3, h2 {
     transform: scale(1.2,1.2);
   }
   .gameOne:hover::after,
-  .gameTwo:hover::after  {
+  .gameTwo:hover::after,
+  .restart:hover::after  {
     opacity: 1;
     transform: scale(1,1);
   }
 
-.gameOne ,.gameTwo{
+.gameOne ,.gameTwo,.restart{
     padding: 2vh;
     color: orange;
     letter-spacing: 2px;
@@ -272,6 +263,13 @@ h3, h2 {
     border: none;
     cursor:default;
     text-shadow: 0px 2px 1px black;
+    font-weight: bold;
+    transition: all 0.5s;
+    position: relative; 
+}
+
+.restart {
+    color: white;
 }
 
 input {
@@ -282,10 +280,7 @@ input {
     font-weight: 900;
 }
 
-input::act {
-    outline: none;
-    background-color: #ffedd5;
-}
+
 
 
 
