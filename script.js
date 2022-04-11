@@ -212,25 +212,19 @@ const gameModule = (() => {
             selector('.bg-modal').style.display = 'none';
                  gameButtons.forEach(button => button.addEventListener('click', () => {
                         if (button.textContent != "X" && button.textContent != "O" ) {
-                             flowControl.gameCount++
-                                if (playerOne.PlayerPlaying){
-                                    selector(".game-state").textContent = `${playerTwo.name} is playing`;
-                                    playerInput(button, playerOne.PlayerMark);
-                                    updatePlayer();
+                            flowControl.gameCount++
+                            if (playerOne.PlayerPlaying){
+                                selector(".game-state").textContent = `${playerTwo.name} is playing`;
+                                playerInput(button, playerOne.PlayerMark);
+                                updatePlayer();
                                     
-                    
-                                } else if (!playerOne.PlayerPlaying) {
-                                     selector(".game-state").textContent = `${playerOne.name} is playing`;
-                                     playerInput(button, playerTwo.PlayerMark);
-                                     updatePlayer();
-                                }
-                        if (flowControl.gameCount === 9) {
-                            selector('.game-state').textContent = `It's a Draw`; 
-                                clearButtons();
-                                clearBoard(gameBoard.boardInputs);
-                                flowControl.gameCount = 0;
-                        }
-                        else if (checkForWinner(gameBoard.boardInputs,playerOne.PlayerMark)) {
+                            } else if (!playerOne.PlayerPlaying) {
+                                selector(".game-state").textContent = `${playerOne.name} is playing`;
+                                playerInput(button, playerTwo.PlayerMark);
+                                updatePlayer();
+                            }
+                                
+                            if (checkForWinner(gameBoard.boardInputs,playerOne.PlayerMark)) {
                                 updateScore(flowControl.playerOneScore,".PlayerOne-score");
                                 selector('.game-state').textContent = `${playerOne.name} has won!`
                                 clearButtons();
@@ -239,7 +233,7 @@ const gameModule = (() => {
                                 updatePlayer();
                                 flowControl.gameCount = 0;
                         
-                         } else if (checkForWinner(gameBoard.boardInputs,playerTwo.PlayerMark)) {
+                            } else if (checkForWinner(gameBoard.boardInputs,playerTwo.PlayerMark)) {
                                 updateScore(flowControl.playerTwoScore,".PlayerTwo-score");
                                 selector('.game-state').textContent = `${playerTwo.name} Has Won`;
                                 clearButtons();
@@ -247,7 +241,7 @@ const gameModule = (() => {
                                 flowControl.playerTwoScore++;
                                 flowControl.gameCount = 0;
     
-                        } else if (flowControl.gameCount === 9) {
+                            } else if (flowControl.gameCount === 9) {
                                 selector('.game-state').textContent = `It's a Draw`; 
                                 clearButtons();
                                 clearBoard(gameBoard.boardInputs);
@@ -281,8 +275,8 @@ const gameModule = (() => {
                                 let bestMove = findBestMove(gameBoard.boardInputs)
                                 gameBoard.boardInputs[bestMove.row][bestMove.col] = aiMark
                                 for (let i = 0 ; i < gameButtons.length ; i++){
-                                if ( gameButtons[i].dataset.row == bestMove.row && gameButtons[i].dataset.column == bestMove.col) 
-                                     gameButtons[i].textContent = aiMark;
+                                    if ( gameButtons[i].dataset.row == bestMove.row && gameButtons[i].dataset.column == bestMove.col) 
+                                        gameButtons[i].textContent = aiMark;
                         }}
                         if (checkForWinner(gameBoard.boardInputs,aiMark)) {
                             updateScore(flowControl.playerOneScore,".PlayerTwo-score");
