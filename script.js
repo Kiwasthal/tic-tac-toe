@@ -16,7 +16,7 @@ const gameModule = (() => {
         let flowControl = {
             playerOneScore : 0,
             playerTwoScore : 0,
-            gameCount : 0
+            roundCount : 0
         };
 
         let gameButtons = document.querySelectorAll('.gameBtn');
@@ -200,7 +200,7 @@ const gameModule = (() => {
         selector('.restart').addEventListener('click' , () => {
             clearButtons();
             clearBoard(gameBoard.boardInputs);
-            flowControl.gameCount = 0;
+            flowControl.roundCount = 0;
             flowControl.playerOneScore = 0;
             flowControl.playerTwoScore = 0;
             selector(".PlayerOne-score").textContent = `${flowControl.playerOneScore}`;
@@ -218,7 +218,7 @@ const gameModule = (() => {
             selector('.bg-modal').style.display = 'none';
                  gameButtons.forEach(button => button.addEventListener('click', () => {
                         if (button.textContent != "X" && button.textContent != "O" ) {
-                            flowControl.gameCount++
+                            flowControl.roundCount++
                             if (playerOne.PlayerPlaying){
                                 selector(".game-state").textContent = `${playerTwo.name} is playing`;
                                 playerInput(button, playerOne.PlayerMark);
@@ -237,7 +237,7 @@ const gameModule = (() => {
                                 clearBoard(gameBoard.boardInputs);
                                 flowControl.playerOneScore++;
                                 updatePlayer();
-                                flowControl.gameCount = 0;
+                                flowControl.roundCount = 0;
                         
                             } else if (checkForWinner(gameBoard.boardInputs,playerTwo.PlayerMark)) {
                                 updateScore(flowControl.playerTwoScore,".PlayerTwo-score");
@@ -245,13 +245,13 @@ const gameModule = (() => {
                                 clearButtons();
                                 clearBoard(gameBoard.boardInputs);
                                 flowControl.playerTwoScore++;
-                                flowControl.gameCount = 0;
+                                flowControl.roundCount = 0;
     
-                            } else if (flowControl.gameCount === 9) {
+                            } else if (flowControl.roundCount === 9) {
                                 selector('.game-state').textContent = `It's a Draw`; 
                                 clearButtons();
                                 clearBoard(gameBoard.boardInputs);
-                                flowControl.gameCount = 0;
+                                flowControl.roundCount = 0;
                         };
             }}));  
         });    
@@ -263,7 +263,7 @@ const gameModule = (() => {
             
                 gameButtons.forEach(button => button.addEventListener('click', () => {
                     if (button.textContent != "X" && button.textContent != "O" ){
-                        flowControl.gameCount++
+                        flowControl.roundCount++
                         playerInput(button, playerOne.PlayerMark);
                         if (checkForWinner(gameBoard.boardInputs,playerOne.PlayerMark)) {
                             updateScore(flowControl.playerOneScore,".PlayerOne-score");
@@ -271,12 +271,12 @@ const gameModule = (() => {
                             clearButtons();
                             clearBoard(gameBoard.boardInputs);
                             flowControl.playerOneScore++;
-                            flowControl.gameCount = 0;
-                        } else if (flowControl.gameCount === 5){
+                            flowControl.roundCount = 0;
+                        } else if (flowControl.roundCount === 5){
                             selector('.game-state').textContent = `It's a Draw`; 
                             clearButtons();
                             clearBoard(gameBoard.boardInputs);
-                            flowControl.gameCount = 0;
+                            flowControl.roundCount = 0;
                         } else {
                             if(isMovesLeft(gameBoard.boardInputs)) {
                                 let bestMove = findBestMove(gameBoard.boardInputs)
@@ -291,7 +291,7 @@ const gameModule = (() => {
                             clearButtons();
                             clearBoard(gameBoard.boardInputs);
                             flowControl.playerOneScore++;
-                            flowControl.gameCount = 0;
+                            flowControl.roundCount = 0;
                         }};   
                     };
             }));
