@@ -193,6 +193,10 @@ const gameModule = (() => {
             }
         }
 
+        let resetButtonAnimation = () => {
+            gameButtons.forEach(button => button.style.fontSize = "0em")
+        }
+
 
         selector('.bg-modal').style.display = 'flex';
         selector('.restart').style.display = 'none'
@@ -220,11 +224,13 @@ const gameModule = (() => {
                         if (button.textContent != "X" && button.textContent != "O" ) {
                             flowControl.roundCount++
                             if (playerOne.PlayerPlaying){
+                                button.style.fontSize = "4em"
                                 selector(".game-state").textContent = `${playerTwo.name} is playing`;
                                 playerInput(button, playerOne.PlayerMark);
                                 updatePlayer();
                                     
                             } else if (!playerOne.PlayerPlaying) {
+                                button.style.fontSize = "4em"
                                 selector(".game-state").textContent = `${playerOne.name} is playing`;
                                 playerInput(button, playerTwo.PlayerMark);
                                 updatePlayer();
@@ -236,8 +242,9 @@ const gameModule = (() => {
                                 clearButtons();
                                 clearBoard(gameBoard.boardInputs);
                                 flowControl.playerOneScore++;
-                                updatePlayer();
                                 flowControl.roundCount = 0;
+                                resetButtonAnimation();
+                                updatePlayer();
                         
                             } else if (checkForWinner(gameBoard.boardInputs,playerTwo.PlayerMark)) {
                                 updateScore(flowControl.playerTwoScore,".PlayerTwo-score");
@@ -246,12 +253,16 @@ const gameModule = (() => {
                                 clearBoard(gameBoard.boardInputs);
                                 flowControl.playerTwoScore++;
                                 flowControl.roundCount = 0;
+                                resetButtonAnimation();
+                                playerOne.PlayerPlaying = true;
+                                
     
                             } else if (flowControl.roundCount === 9) {
                                 selector('.game-state').textContent = `It's a Draw`; 
                                 clearButtons();
                                 clearBoard(gameBoard.boardInputs);
                                 flowControl.roundCount = 0;
+                                resetButtonAnimation();
                         };
             }}));  
         });    
@@ -263,6 +274,7 @@ const gameModule = (() => {
             
                 gameButtons.forEach(button => button.addEventListener('click', () => {
                     if (button.textContent != "X" && button.textContent != "O" ){
+                        button.style.fontSize = "4em"
                         flowControl.roundCount++
                         playerInput(button, playerOne.PlayerMark);
                         if (checkForWinner(gameBoard.boardInputs,playerOne.PlayerMark)) {
@@ -272,18 +284,22 @@ const gameModule = (() => {
                             clearBoard(gameBoard.boardInputs);
                             flowControl.playerOneScore++;
                             flowControl.roundCount = 0;
+                            resetButtonAnimation();
                         } else if (flowControl.roundCount === 5){
                             selector('.game-state').textContent = `It's a Draw`; 
                             clearButtons();
                             clearBoard(gameBoard.boardInputs);
                             flowControl.roundCount = 0;
+                            resetButtonAnimation();
                         } else {
                             if(isMovesLeft(gameBoard.boardInputs)) {
                                 let bestMove = findBestMove(gameBoard.boardInputs)
                                 gameBoard.boardInputs[bestMove.row][bestMove.col] = aiMark
                                 for (let i = 0 ; i < gameButtons.length ; i++){
-                                    if ( gameButtons[i].dataset.row == bestMove.row && gameButtons[i].dataset.column == bestMove.col) 
+                                    if ( gameButtons[i].dataset.row == bestMove.row && gameButtons[i].dataset.column == bestMove.col) {
+                                        gameButtons[i].style.fontSize = "4em"
                                         gameButtons[i].textContent = aiMark;
+                                    }
                         }}
                         if (checkForWinner(gameBoard.boardInputs,aiMark)) {
                             updateScore(flowControl.playerOneScore,".PlayerTwo-score");
@@ -292,6 +308,7 @@ const gameModule = (() => {
                             clearBoard(gameBoard.boardInputs);
                             flowControl.playerOneScore++;
                             flowControl.roundCount = 0;
+                            resetButtonAnimation();
                         }};   
                     };
             }));

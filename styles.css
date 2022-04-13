@@ -109,9 +109,13 @@ h3, h2 {
     align-items: center;
     width: 7vw;
     height: 7vw;
-    font-size: 4em;
+    font-size: 0em;
     filter: drop-shadow(0px 2px 10px black);
+    transition: 150ms;
 }
+
+
+
 
 .top-left {
     border-top-left-radius: 40px;
